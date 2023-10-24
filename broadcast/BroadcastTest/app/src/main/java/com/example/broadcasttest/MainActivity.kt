@@ -1,0 +1,37 @@
+package com.example.broadcasttest
+
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+
+class MainActivity : AppCompatActivity() {
+    private lateinit var timeChangeReceiver: TimeChangeReceiver
+
+    inner class TimeChangeReceiver : BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            Toast.makeText(this@MainActivity, "Time has changed", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // 过滤想要监听的广播
+        val intentFilter = IntentFilter()
+        intentFilter.addAction("android.intent.action.TIME_TICK")
+        timeChangeReceiver = TimeChangeReceiver()
+        // 注册广播
+        registerReceiver(timeChangeReceiver, intentFilter)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        // 动态注册的广播需要手动注销
+        unregisterReceiver(timeChangeReceiver)
+    }
+}
