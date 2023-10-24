@@ -31,9 +31,16 @@ class MainActivity : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            val intent = Intent("com.example.broadcasttest.My_BROADCAST")
+            val intent = Intent("com.example.broadcasttest.MY_BROADCAST")
             intent.setPackage(packageName)
             sendBroadcast(intent)
+        }
+
+        val orderButton = findViewById<Button>(R.id.orderButton)
+        orderButton.setOnClickListener {
+            val intent = Intent("com.example.broadcasttest.MY_BROADCAST")
+            intent.setPackage(packageName)
+            sendBroadcast(intent, null)
         }
     }
 
