@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DatabaseBestPractice</string>
+    <string name="add_data">Add Data</string>
+    <string name="replace_data">Replace Data</string>
+</resources>
