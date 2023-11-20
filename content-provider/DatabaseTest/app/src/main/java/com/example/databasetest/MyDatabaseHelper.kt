@@ -22,7 +22,6 @@ class MyDatabaseHelper(private val context: Context, name: String, version: Int)
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(createBook)
         db.execSQL(createCategory)
-        Toast.makeText(context, "Create Succeed", Toast.LENGTH_LONG).show()
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
